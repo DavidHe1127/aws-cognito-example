@@ -1,20 +1,10 @@
-// import { Config, CognitoIdentityCredentials } from 'aws-sdk';
-import { Config } from 'aws-sdk';
-import {
-  CognitoUserPool,
-  CognitoUserAttribute
-} from 'amazon-cognito-identity-js';
 import React from 'react';
-import appConfig from './config';
 
-Config.region = appConfig.region;
-// Config.credentials = new CognitoIdentityCredentials({
-//   IdentityPoolId: appConfig.IdentityPoolId
-// });
+import {Auth} from 'aws-amplify';
 
 const userPool = new CognitoUserPool({
   UserPoolId: appConfig.UserPoolId,
-  ClientId: appConfig.ClientId
+  ClientId: appConfig.ClientId,
 });
 
 class SignUp extends React.Component {
@@ -27,36 +17,43 @@ class SignUp extends React.Component {
       family_name: '',
       profile: '',
       gender: 'm',
-      phone_number: ''
+      phone_number: '',
     };
   }
 
   handleEmailChange(e) {
-    this.setState({ email: e.target.value });
+    this.setState({email: e.target.value});
   }
 
   handlePasswordChange(e) {
-    this.setState({ password: e.target.value });
+    this.setState({password: e.target.value});
   }
 
   handleSubmit(e) {
     e.preventDefault();
     const email = this.state.email.trim();
     const password = this.state.password.trim();
-    const attributeList = [
-      new CognitoUserAttribute({
-        Name: 'email',
-        Value: email
-      })
-    ];
-    userPool.signUp(email, password, attributeList, null, (err, result) => {
-      if (err) {
-        console.log(err);
-        return;
-      }
-      console.log('user name is ' + result.user.getUsername());
-      console.log('call result: ' + result);
-    });
+    const given_name = this.state.given_name.trim();
+    const family_name = this.state.family_name.trim();
+    const profile = this.state.profile.trim();
+    const gender = this.state.gender.trim();
+    const phone_number = this.state.phone_number.trim();
+
+    Auth.signUp({
+      username: email,
+      password,
+      attributes: {
+        email,
+        given_name,
+        family_name,
+        profile,
+        gender,
+        phone_number,
+      },
+      validationData: [],
+    })
+      .then(data => console.log(data))
+      .catch(err => console.log(err));
   }
 
   render() {
