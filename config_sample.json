@@ -1,6 +1,6 @@
 {
-  "region": "us-east-2",
-  "IdentityPoolId": "us-east-2:ca46775a-8db4-4d43-9136-b2f790bf4042",
-  "UserPoolId": "us-east-2_R2KUELtYK",
-  "ClientId": "4tv7co63gh9audhsk8kuhdsm3f"
+  "region": "<COGNITO_REGION>",
+  "identityPoolId": "<COGNITO_IDENTITY_POOL_ID>",
+  "userPoolId": "<COGNITO_USER_POOL_ID>",
+  "userPoolWebClientId": "<COGNITO_WEB_CLIENT_ID>"
 }
