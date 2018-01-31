@@ -6,7 +6,7 @@ Firstly, you need to create file called `config.json` under `src` and fill it up
 ```json
 {
   "region": "<YOUR_REGION>",
-  "IdentityPoolId": "<N/A_IF_NOT_USE_FEDERATION_POOL",
+  "IdentityPoolId": "<N/A_IF_NOT_USE_FEDERATION_POOL>",
   "UserPoolId": "<YOUR_USER_POOL_ID>",
   "ClientId": "<YOUR_CLIENT_APP_ID>"
 }
