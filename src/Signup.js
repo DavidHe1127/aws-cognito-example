@@ -2,11 +2,6 @@ import React from 'react';
 
 import {Auth} from 'aws-amplify';
 
-const userPool = new CognitoUserPool({
-  UserPoolId: appConfig.UserPoolId,
-  ClientId: appConfig.ClientId,
-});
-
 class SignUp extends React.Component {
   constructor(props) {
     super(props);
