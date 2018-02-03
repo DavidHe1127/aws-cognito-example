@@ -1,6 +1,7 @@
 import React from 'react';
-
 import {Auth} from 'aws-amplify';
+
+import './index.css';
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -10,15 +11,16 @@ class SignUp extends React.Component {
       password: '',
       given_name: '',
       family_name: '',
-      profile: '',
+      profile: 'this is awesome',
       gender: 'm',
       phone_number: '',
+      error: false
     };
   }
 
   handleInputChange(e) {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   }
 
@@ -30,41 +32,49 @@ class SignUp extends React.Component {
     const family_name = this.state.family_name.trim();
     const profile = this.state.profile.trim();
     const gender = this.state.gender.trim();
-    const phone_number = this.state.phone_number.trim();
+    const phone = this.state.phone_number.trim();
 
-    Auth.signUp({
-      username: email,
-      password,
-      attributes: {
-        email,
-        given_name,
-        family_name,
-        profile,
-        gender,
-        phone_number,
-      },
-      validationData: [],
-    })
-      .then(data => console.log(data))
-      .catch(err => console.log(err));
+    if (!email && !password) {
+      return this.setState({
+        error: true
+      });
+    }
+
+    // Auth.signUp({
+    //   username: 'tracyguan108@gmail.com',
+    //   password: '52230365DavidHe',
+    //   email: 'tracyguan108@gmail.com',
+    //   given_name: 'xin',
+    //   family_name: 'guan',
+    //   profile: 'good',
+    //   gender: 'f',
+    //   phone_number: '+61430296166',
+    // })
+    //   .then(data => console.log(data))
+    //   .catch(err => console.log(err));
+
+    this.props.history.push(`/confirm/${email}`);
   }
 
   render() {
     return (
       <div className="container">
+        <h1 className="title">Sign Up</h1>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <input
             type="text"
             value={this.state.email}
             name="email"
-            placeholder="Email"
+            className={this.state.error ? "error" : null}
+            placeholder="aaa@abc.com"
             onChange={this.handleInputChange.bind(this)}
           />
           <input
             type="password"
             value={this.state.password}
             name="password"
-            placeholder="Password"
+            className={this.state.error ? "error" : null}
+            placeholder="min length 8 and must contain lowercase letters"
             onChange={this.handleInputChange.bind(this)}
           />
           <input
@@ -82,25 +92,13 @@ class SignUp extends React.Component {
             onChange={this.handleInputChange.bind(this)}
           />
           <input
-            type="text"
-            value={this.state.profile}
-            name="profile"
-            placeholder="Profile"
-            onChange={this.handleInputChange.bind(this)}
-          />
-          <input
-            type="text"
-            value={'m'}
-            placeholder="Gender"
-          />
-          <input
             type="number"
             value={this.state.phone_number}
-            placeholder="Phone"
+            placeholder="+61430285197"
             name="phone_number"
             onChange={this.handleInputChange.bind(this)}
           />
-          <input type="submit" value="Signup" />
+          <input type="submit" value="Confirm" />
         </form>
       </div>
     );
