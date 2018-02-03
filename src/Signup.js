@@ -16,12 +16,10 @@ class SignUp extends React.Component {
     };
   }
 
-  handleEmailChange(e) {
-    this.setState({email: e.target.value});
-  }
-
-  handlePasswordChange(e) {
-    this.setState({password: e.target.value});
+  handleInputChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
   }
 
   handleSubmit(e) {
@@ -58,44 +56,49 @@ class SignUp extends React.Component {
           <input
             type="text"
             value={this.state.email}
+            name="email"
             placeholder="Email"
-            onChange={this.handleEmailChange.bind(this)}
+            onChange={this.handleInputChange.bind(this)}
           />
           <input
             type="password"
             value={this.state.password}
+            name="password"
             placeholder="Password"
-            onChange={this.handlePasswordChange.bind(this)}
+            onChange={this.handleInputChange.bind(this)}
           />
           <input
             type="text"
             value={this.state.given_name}
+            name="given_name"
             placeholder="Given Name"
-            onChange={this.handleEmailChange.bind(this)}
+            onChange={this.handleInputChange.bind(this)}
           />
           <input
             type="text"
             value={this.state.family_name}
+            name="family_name"
             placeholder="Family Name"
-            onChange={this.handleEmailChange.bind(this)}
+            onChange={this.handleInputChange.bind(this)}
           />
           <input
             type="text"
             value={this.state.profile}
+            name="profile"
             placeholder="Profile"
-            onChange={this.handleEmailChange.bind(this)}
+            onChange={this.handleInputChange.bind(this)}
           />
           <input
             type="text"
             value={'m'}
             placeholder="Gender"
-            onChange={this.handleEmailChange.bind(this)}
           />
           <input
             type="number"
             value={this.state.phone_number}
             placeholder="Phone"
-            onChange={this.handleEmailChange.bind(this)}
+            name="phone_number"
+            onChange={this.handleInputChange.bind(this)}
           />
           <input type="submit" value="Signup" />
         </form>
