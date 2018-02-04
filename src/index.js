@@ -4,6 +4,7 @@ import './index.css';
 import Signup from './Signup';
 import Signin from './Signin';
 import Confirm from './Confirm';
+import Main from './Main';
 import registerServiceWorker from './registerServiceWorker';
 
 import {
@@ -15,8 +16,17 @@ import {
 } from 'react-router-dom';
 
 // cognito
-import Amplify from 'aws-amplify';
+import Amplify, {Auth} from 'aws-amplify';
 import config from './config.json';
+
+function signout() {
+  Auth.signOut()
+    .then(data => {
+      console.log('signout', data)
+      localStorage.setItem('session', null);
+    })
+    .catch(err => console.log(err));
+}
 
 Amplify.configure({
   Auth: {
@@ -43,10 +53,17 @@ ReactDOM.render(
         <li>
           <Link to="/signin">Signin</Link>
         </li>
+        <li></li>
+        {!localStorage.getItem('session') && (
+          <li>
+            <button onClick={signout}>Sign out</button>
+          </li>
+        )}
       </ul>
       <Route exact path="/" component={Signup} />
       <Route path="/confirm/:username?" component={Confirm} />
       <Route path="/signin" component={Signin} />
+      <Route path="/home" component={Main} />
     </div>
   </Router>,
   document.getElementById('root'),
