@@ -16,3 +16,6 @@ Then, open a terminal and run:
 npm i
 npm start
 ```
+
+### Todo
+* Add server side api to verify token
