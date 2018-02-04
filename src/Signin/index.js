@@ -24,10 +24,8 @@ class SignIn extends React.Component {
 
     Auth.signIn(username, password)
       .then(data => {
-        console.log(data.CognitoUser);
-        const {CognitoUser: {signInUserSession}} = data.CognitoUser.signInUserSession;
-        console.log(signInUserSession);
-        localStorage.setItem('session', signInUserSession);
+        const { signInUserSession } = data;
+        localStorage.setItem('session', JSON.stringify(signInUserSession));
         this.props.history.push('/home');
       })
       .catch(err => console.log(err));
