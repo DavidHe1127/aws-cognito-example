@@ -40,7 +40,7 @@ class SignIn extends React.Component {
             onChange={this.handleInputChange.bind(this)}
           />
           <input
-            type="text"
+            type="password"
             value={this.state.email}
             name="password"
             placeholder="eg 122354"
