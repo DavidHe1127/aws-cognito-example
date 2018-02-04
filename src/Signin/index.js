@@ -22,9 +22,9 @@ class SignIn extends React.Component {
     const username = this.state.username.trim();
     const password = this.state.password.trim();
 
-    // Auth.signIn(username, password)
-    //   .then(data => console.log('signin', data))
-    //   .catch(err => console.log(err));
+    Auth.signIn(username, password)
+      .then(data => console.log('signin', data))
+      .catch(err => console.log(err));
   }
 
   render() {
