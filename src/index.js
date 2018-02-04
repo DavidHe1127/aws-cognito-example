@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Signup from './Signup';
+import Signin from './Signin';
 import Confirm from './Confirm';
 import registerServiceWorker from './registerServiceWorker';
 
@@ -10,6 +11,7 @@ import {
   Route,
   Switch,
   Redirect,
+  Link,
 } from 'react-router-dom';
 
 // cognito
@@ -24,10 +26,28 @@ Amplify.configure({
 
 ReactDOM.render(
   <Router>
-    <Switch>
+    <div>
+      <ul
+        style={{
+          padding: '10px',
+          width: '10%',
+          background: '#f0f0f0',
+        }}
+      >
+        <li>
+          <Link to="/">Signup</Link>
+        </li>
+        <li>
+          <Link to="/confirm">Confirm</Link>
+        </li>
+        <li>
+          <Link to="/signin">Signin</Link>
+        </li>
+      </ul>
       <Route exact path="/" component={Signup} />
-      <Route path="/confirm/:username" component={Confirm} />
-    </Switch>
+      <Route path="/confirm/:username?" component={Confirm} />
+      <Route path="/signin" component={Signin} />
+    </div>
   </Router>,
   document.getElementById('root'),
 );

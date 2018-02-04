@@ -50,7 +50,7 @@ class SignUp extends React.Component {
     //   gender: 'f',
     //   phone_number: '+61430296166',
     // })
-    //   .then(data => console.log(data))
+    //   .then(data => console.log('signup',data))
     //   .catch(err => console.log(err));
 
     this.props.history.push(`/confirm/${email}`);
