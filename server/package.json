@@ -19,7 +19,8 @@
     "graphql-custom-directive": "^0.1.9",
     "graphql-tools": "^2.19.0",
     "jsonwebtoken": "^8.1.0",
-    "jwt-decode": "^2.2.0"
+    "jwt-decode": "^2.2.0",
+    "node-fetch": "^2.0.0"
   },
   "devDependencies": {
     "nodemon": "^1.12.1"
