@@ -3,8 +3,8 @@ const jwt = require('jsonwebtoken');
 
 const directiveResolvers = {
   isAuthenticated(next, source, args, context) {
-    console.log(token)
     const token = context.headers.authorization;
+    console.log('token', token)
     if (!token) {
       throw new AuthorizationError({
         message: 'You must supply a JWT for authorization!'
@@ -16,7 +16,6 @@ const directiveResolvers = {
         process.env.JWT_SECRET
       );
       context.user = decoded;
-      console.log('xccc')
       return next();
     } catch (err) {
       throw new AuthorizationError({

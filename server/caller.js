@@ -8,7 +8,7 @@ fetch('http://localhost:8080/graphql', {
 
   },
   body: JSON.stringify({
-    query: '{ allArticles { id, authorId, authorName, articleName, link } }'
+    query: '{ allArticlesPub { id, authorId, authorName, articleName, link } }'
   })
 }).then(res => {
   console.log('iijiji')

@@ -39,6 +39,7 @@ const typeDefs = `
 
   type Query {
     allArticles: [Article] @isAuthenticated
+    allArticlesPub: [Article]
   }
 
   type Mutation {
@@ -48,7 +49,11 @@ const typeDefs = `
 
 const resolvers = {
   Query: {
-    allArticles: getArticlesForAuthor
+    allArticles: getArticlesForAuthor,
+    allArticlesPub: () => {
+      console.log('xcc')
+      return [];
+    }
   },
   Mutation: {
     addArticle: addArticle
