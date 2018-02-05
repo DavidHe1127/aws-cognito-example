@@ -1,8 +1,9 @@
 require('dotenv').config();
 const express = require('express');
 const graphqlHTTP = require('express-graphql');
-const { makeExecutableSchema } = require('graphql-tools');
+const { makeExecutableSchema, attachDirectiveResolvers } = require('graphql-tools');
 const { directiveResolvers } = require('./directives');
+
 const { getArticlesForAuthor, addArticle } = require('./controllers');
 
 const app = express();
@@ -55,6 +56,11 @@ const resolvers = {
 };
 
 const schema = makeExecutableSchema({ typeDefs, resolvers, directiveResolvers });
+
+// attachDirectiveResolvers({
+//   schema,
+//   directiveResolvers,
+// });
 
 app.use(
   '/graphql',

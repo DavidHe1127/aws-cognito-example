@@ -1,6 +1,7 @@
 let ARTICLES = require('./../data/articles');
 
-const getArticlesForAuthor = user => {
+const getArticlesForAuthor = (obj, args, ctx) => {
+  console.log('xc')
   return ARTICLES.filter(article => article.authorId === user.sub);
 };
 

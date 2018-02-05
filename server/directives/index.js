@@ -1,12 +1,10 @@
-const { forEachField } = require('graphql-tools');
-const { getArgumentValues } = require('graphql/execution/values');
 const { AuthorizationError } = require('./../errors');
 const jwt = require('jsonwebtoken');
 
 const directiveResolvers = {
-  isAuthenticated(result, source, args, context) {
-    const token = context.headers.authorization;
+  isAuthenticated(next, source, args, context) {
     console.log(token)
+    const token = context.headers.authorization;
     if (!token) {
       throw new AuthorizationError({
         message: 'You must supply a JWT for authorization!'
@@ -17,7 +15,9 @@ const directiveResolvers = {
         token.replace('Bearer ', ''),
         process.env.JWT_SECRET
       );
-      return result;
+      context.user = decoded;
+      console.log('xccc')
+      return next();
     } catch (err) {
       throw new AuthorizationError({
         message: 'You are not authorized.'
@@ -53,35 +53,4 @@ const directiveResolvers = {
   }
 };
 
-// Credit: agonbina https://github.com/apollographql/graphql-tools/issues/212
-const attachDirectives = schema => {
-  forEachField(schema, field => {
-    const directives = field.astNode.directives;
-    directives.forEach(directive => {
-      const directiveName = directive.name.value;
-      const resolver = directiveResolvers[directiveName];
-
-      if (resolver) {
-        const oldResolve = field.resolve;
-        const Directive = schema.getDirective(directiveName);
-        const args = getArgumentValues(Directive, directive);
-
-        field.resolve = function() {
-          const [source, _, context, info] = arguments;
-          let promise = oldResolve.call(field, ...arguments);
-
-          const isPrimitive = !(promise instanceof Promise);
-          if (isPrimitive) {
-            promise = Promise.resolve(promise);
-          }
-
-          return promise.then(result =>
-            resolver(result, source, args, context, info)
-          );
-        };
-      }
-    });
-  });
-};
-
-module.exports = { directiveResolvers, attachDirectives };
+module.exports = { directiveResolvers };
