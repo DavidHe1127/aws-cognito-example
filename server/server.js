@@ -1,14 +1,15 @@
 require('dotenv').config();
 const express = require('express');
 const graphqlHTTP = require('express-graphql');
-const { makeExecutableSchema, attachDirectiveResolvers } = require('graphql-tools');
+const {
+  makeExecutableSchema,
+  attachDirectiveResolvers
+} = require('graphql-tools');
 const { directiveResolvers } = require('./directives');
 
-const { getArticlesForAuthor, addArticle } = require('./controllers');
+const { getArticlesForAuthor, addArticle, article } = require('./controllers');
 
 const app = express();
-
-let ARTICLES = require('./data/articles');
 
 const port = 8080;
 const typeDefs = `
@@ -40,6 +41,7 @@ const typeDefs = `
   type Query {
     allArticles: [Article] @isAuthenticated
     allArticlesPub: [Article]
+    article: Article
   }
 
   type Mutation {
@@ -51,16 +53,33 @@ const resolvers = {
   Query: {
     allArticles: getArticlesForAuthor,
     allArticlesPub: () => {
-      console.log('xcc')
-      return [];
-    }
+      const res = [
+        {
+          id: '1',
+          authorName: 'David He',
+          authorId: 'Public',
+          articleName: 'How to raise your parrots',
+          link: 'https://birds-supply',
+          review: {
+            rating: 12,
+            comment: 'Very good article, would recommend.'
+          }
+        }
+      ];
+      return res;
+    },
+    article
   },
   Mutation: {
     addArticle: addArticle
   }
 };
 
-const schema = makeExecutableSchema({ typeDefs, resolvers, directiveResolvers });
+const schema = makeExecutableSchema({
+  typeDefs,
+  resolvers,
+  directiveResolvers
+});
 
 // attachDirectiveResolvers({
 //   schema,

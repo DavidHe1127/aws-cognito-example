@@ -1,19 +1,24 @@
 const fetch = require('node-fetch');
 
+const queries = {
+  public: '{ allArticlesPub { id, authorId, authorName, articleName, link } }',
+  allArticles: '{ allArticles { id, authorId, authorName, articleName, link } }',
+  article: '{ article { id, authorId, authorName, articleName, link, review {rating comment} } }'
+};
+
 fetch('http://localhost:8080/graphql', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
-    authorization: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJncmFwaHFsLXRlc3Qtc2VydmVyIiwiaWF0IjoxNTA5MDQxMTE3LCJleHAiOjE1NDA1NzcxMTcsImF1ZCI6ImdyYXBocWwtdGVzdC1hcGkiLCJzdWIiOiIxMjMifQ.tTRbNKT58UqRMqMkf8cLenRZ0qvf15mUl6N6dWyn_Wo'
-
+    authorization:
+      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJncmFwaHFsLXRlc3Qtc2VydmVyIiwiaWF0IjoxNTA5MDQxMTE3LCJleHAiOjE1NDA1NzcxMTcsImF1ZCI6ImdyYXBocWwtdGVzdC1hcGkiLCJzdWIiOiIxMjMiLCJzY29wZSI6InJlYWQ6Y29tbWVudHMifQ.hr1wl0qcBxDGMePOC6HepmZ6efnrkiUlFa-agsRLwto'
   },
   body: JSON.stringify({
-    query: '{ allArticlesPub { id, authorId, authorName, articleName, link } }'
+    query: queries.article
   })
-}).then(res => {
-  console.log('iijiji')
-  console.log(res.json())
-}).catch(err => {
-  console.log(err)
-});
-
+})
+  .then(res => res.json())
+  .then(json => console.log('xxx', json))
+  .catch(err => {
+    console.log(err);
+  });

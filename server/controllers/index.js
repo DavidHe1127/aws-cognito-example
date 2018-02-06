@@ -5,10 +5,15 @@ const getArticlesForAuthor = (obj, args, ctx) => {
   return ARTICLES.filter(article => article.authorId === user.sub);
 };
 
-const addArticle = input => {
-  input.id = ARTICLES.length + 1;
-  ARTICLES.push(input);
-  return input;
+const addArticle = (obj, args, ctx) => {
+  args.input.id = ARTICLES.length + 1;
+  ARTICLES.push(args.input);
+  return args.input;
 };
 
-module.exports = { getArticlesForAuthor, addArticle };
+const article = (obj, args, ctx) => {
+  console.log('article', ctx.user);
+  return [];
+};
+
+module.exports = { getArticlesForAuthor, addArticle, article };

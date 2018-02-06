@@ -2,9 +2,8 @@ const { AuthorizationError } = require('./../errors');
 const jwt = require('jsonwebtoken');
 
 const directiveResolvers = {
-  isAuthenticated(next, source, args, context) {
+  isAuthenticated: (next, source, args, context) => {
     const token = context.headers.authorization;
-    console.log('token', token)
     if (!token) {
       throw new AuthorizationError({
         message: 'You must supply a JWT for authorization!'
@@ -16,14 +15,15 @@ const directiveResolvers = {
         process.env.JWT_SECRET
       );
       context.user = decoded;
-      return next();
+      return next({ a: 12 });
     } catch (err) {
       throw new AuthorizationError({
         message: 'You are not authorized.'
       });
     }
   },
-  hasScope(result, source, args, context) {
+  hasScope: (next, source, args, context) => {
+    console.log('xcxc');
     const token = context.headers.authorization;
     const expectedScopes = args.scope;
     if (!token) {
@@ -38,7 +38,7 @@ const directiveResolvers = {
       );
       const scopes = decoded.scope.split(' ');
       if (expectedScopes.some(scope => scopes.indexOf(scope) !== -1)) {
-        return result;
+        return next();
       }
     } catch (err) {
       return Promise.reject(
