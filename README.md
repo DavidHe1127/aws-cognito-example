@@ -18,4 +18,4 @@ npm start
 ```
 
 ### Todo
-* Add server side api to verify token
+* Follow guide on aws to verify the token

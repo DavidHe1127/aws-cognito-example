@@ -22,7 +22,7 @@ const typeDefs = `
     authorName: String!
     articleName: String!
     link: String!
-    review: Review @hasScope(scope: ["write:articles"])
+    review: Review @hasScope(scope: ["read:comments"])
   }
 
   type Review {
