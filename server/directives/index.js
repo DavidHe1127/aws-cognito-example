@@ -23,7 +23,6 @@ const directiveResolvers = {
     }
   },
   hasScope: (next, source, args, context) => {
-    console.log('xcxc');
     const token = context.headers.authorization;
     const expectedScopes = args.scope;
     if (!token) {

@@ -2,12 +2,11 @@ require('dotenv').config();
 const express = require('express');
 const graphqlHTTP = require('express-graphql');
 const {
-  makeExecutableSchema,
-  attachDirectiveResolvers
+  makeExecutableSchema
 } = require('graphql-tools');
-const { directiveResolvers } = require('./directives');
+const {directiveResolvers} = require('./directives');
 
-const { getArticlesForAuthor, addArticle, article } = require('./controllers');
+const {getArticlesForAuthor, addArticle, article} = require('./controllers');
 
 const app = express();
 
@@ -23,7 +22,7 @@ const typeDefs = `
     authorName: String!
     articleName: String!
     link: String!
-    review: Review @hasScope(scope: ["read:comments"])
+    review: Review @hasScope(scope: ["write:articles"])
   }
 
   type Review {
@@ -62,36 +61,31 @@ const resolvers = {
           link: 'https://birds-supply',
           review: {
             rating: 12,
-            comment: 'Very good article, would recommend.'
-          }
-        }
+            comment: 'Very good article, would recommend.',
+          },
+        },
       ];
       return res;
     },
-    article
+    article,
   },
   Mutation: {
-    addArticle: addArticle
+    addArticle: addArticle,
   }
 };
 
 const schema = makeExecutableSchema({
   typeDefs,
   resolvers,
-  directiveResolvers
+  directiveResolvers,
 });
-
-// attachDirectiveResolvers({
-//   schema,
-//   directiveResolvers,
-// });
 
 app.use(
   '/graphql',
   graphqlHTTP({
     schema,
-    graphiql: true
-  })
+    graphiql: true,
+  }),
 );
 
 app.listen(port);

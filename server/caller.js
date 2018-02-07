@@ -10,8 +10,7 @@ fetch('http://localhost:8080/graphql', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
-    authorization:
-      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJncmFwaHFsLXRlc3Qtc2VydmVyIiwiaWF0IjoxNTA5MDQxMTE3LCJleHAiOjE1NDA1NzcxMTcsImF1ZCI6ImdyYXBocWwtdGVzdC1hcGkiLCJzdWIiOiIxMjMiLCJzY29wZSI6InJlYWQ6Y29tbWVudHMifQ.hr1wl0qcBxDGMePOC6HepmZ6efnrkiUlFa-agsRLwto'
+    authorization: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJncmFwaHFsLXRlc3Qtc2VydmVyIiwiaWF0IjoxNTA5MDQxMTE3LCJleHAiOjE1NDA1NzcxMTcsImF1ZCI6ImdyYXBocWwtdGVzdC1hcGkiLCJzdWIiOiIxMjMiLCJzY29wZSI6IndyaXRlOmFydGljbGVzIn0.mupYodqVggdF1fZaiyVdfOGLwY_R3KISGBTCJ7hhH5U'
   },
   body: JSON.stringify({
     query: queries.article
@@ -20,5 +19,5 @@ fetch('http://localhost:8080/graphql', {
   .then(res => res.json())
   .then(json => console.log('xxx', json))
   .catch(err => {
-    console.log(err);
+    // console.log(err);
   });
