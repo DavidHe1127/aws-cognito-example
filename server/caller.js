@@ -10,7 +10,7 @@ fetch('http://localhost:8080/graphql', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
-    authorization: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MTc5ODQzNTcsImV4cCI6MTU0OTUyMDM3NywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsInNjb3BlIjoicmVhZDpjb21tZW50cyJ9.t9smhM4UCEB6GIgCmvxNVsnvFWh20mZbzm_zNzRFuVU'
+    authorization: ''
   },
   body: JSON.stringify({
     query: queries.article
