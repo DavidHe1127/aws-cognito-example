@@ -1,17 +1,16 @@
-let ARTICLES = require('./../data/articles');
+let PRODUCTS = require('./products');
 
-const getArticlesForAuthor = (obj, args, ctx) => {
-  console.log(ctx.user);
-  return ARTICLES.filter(article => article.authorId === user.sub);
+const allProducts = (obj, args, ctx) => {
+  return PRODUCTS.filter(article => article.authorId === user.sub);
 };
 
-const addArticle = (obj, args, ctx) => {
+const addProduct = (obj, args, ctx) => {
   args.input.id = ARTICLES.length + 1;
   ARTICLES.push(args.input);
   return args.input;
 };
 
-const article = (obj, args, ctx) => {
+const product = (obj, args, ctx) => {
   return {
     id: '2',
     authorId: '234',
@@ -25,4 +24,4 @@ const article = (obj, args, ctx) => {
   };
 };
 
-module.exports = {getArticlesForAuthor, addArticle, article};
+module.exports = {allProducts, addProduct, product};

@@ -6,7 +6,7 @@ const {
 } = require('graphql-tools');
 const {directiveResolvers} = require('./directives');
 
-const {getArticlesForAuthor, addArticle, article} = require('./controllers');
+const {allProducts, product, everyProductPub, addProduct} = require('./resolvers');
 
 const app = express();
 
@@ -16,61 +16,45 @@ const typeDefs = `
   directive @isAuthenticated on QUERY | FIELD
   directive @hasScope(scope: [String]) on QUERY | FIELD
 
-  type Article {
+  type Product {
     id: ID!
-    authorId: ID!
-    authorName: String!
-    articleName: String!
-    link: String!
-    review: Review @hasScope(scope: ["read:comments"])
+    supplierId: ID!
+    sku: String
+    qty: Number
+    price: Number
+    parrot: String
+    rating: Number @hasScope(scope: ["read:rating"])
   }
 
-  type Review {
-    rating: Int
-    comment: String
-  }
-
-  input ArticleInput {
-    authorId: ID!
-    authorName: String!
-    articleName: String!
-    link: String!
+  input ProductInput {
+    id: ID!
+    supplierId: ID!
+    sku: String!
+    qty: Number!
+    price: Number!
+    parrot: String!
+    rating: Number!
   }
 
   type Query {
-    allArticles: [Article] @isAuthenticated
-    allArticlesPub: [Article]
-    article: Article
+    allProducts: [Product] @isAuthenticated
+    product: Product @isAuthenticated
+    everyProductPub: Product
   }
 
   type Mutation {
-    addArticle(input: ArticleInput): Article
+    addProduct(input: ProductInput): Product @hasScope(scope: ["add:product"])
   }
 `;
 
 const resolvers = {
   Query: {
-    allArticles: getArticlesForAuthor,
-    allArticlesPub: () => {
-      const res = [
-        {
-          id: '1',
-          authorName: 'David He',
-          authorId: 'Public',
-          articleName: 'How to raise your parrots',
-          link: 'https://birds-supply',
-          review: {
-            rating: 12,
-            comment: 'Very good article, would recommend.',
-          },
-        },
-      ];
-      return res;
-    },
-    article,
+    allProducts,
+    product,
+    everyProductPub
   },
   Mutation: {
-    addArticle: addArticle,
+    addProduct
   }
 };
 
