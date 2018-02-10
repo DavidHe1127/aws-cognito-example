@@ -6,7 +6,7 @@ const {
 } = require('graphql-tools');
 const {directiveResolvers} = require('./directives');
 
-const {allProductsBySupplier, addProduct, product, everyProductPub} = require('./resolvers');
+const {allProductsBySupplier, addProduct, product, suppliers} = require('./resolvers');
 
 const app = express();
 
@@ -26,6 +26,11 @@ const typeDefs = `
     rating: Int @hasScope(scope: ["read:rating"])
   }
 
+  type Supplier {
+    id: ID!
+    name: String!
+  }
+
   input ProductInput {
     id: ID!
     supplierId: ID!
@@ -39,7 +44,7 @@ const typeDefs = `
   type Query {
     allProductsBySupplier: [Product] @isAuthenticated
     product: Product @isAuthenticated
-    everyProductPub: [Product]
+    suppliers: [Supplier]
   }
 
   type Mutation {
@@ -51,7 +56,7 @@ const resolvers = {
   Query: {
     allProductsBySupplier,
     product,
-    everyProductPub
+    suppliers
   },
   Mutation: {
     addProduct

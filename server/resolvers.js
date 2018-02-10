@@ -1,4 +1,5 @@
 let PRODUCTS = require('./products');
+let SUPPLIERS = require('./suppliers');
 
 const allProductsBySupplier = (obj, args, ctx) => PRODUCTS.filter(p => p.supplierId === ctx.user.sub);
 
@@ -13,6 +14,6 @@ const addProduct = (obj, args, ctx) => {
 
 const product = (obj, args, ctx) => PRODUCTS.find(p => p.id === args.productId);
 
-const everyProductPub = (obj, args, ctx) => PRODUCTS;
+const suppliers = (obj, args, ctx) => SUPPLIERS;
 
-module.exports = {allProductsBySupplier, product, everyProductPub, addProduct};
+module.exports = {allProductsBySupplier, product, suppliers, addProduct};
