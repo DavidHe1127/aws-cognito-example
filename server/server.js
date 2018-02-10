@@ -78,4 +78,4 @@ app.use(
 );
 
 app.listen(port);
-console.log(`App listening on localhost:${port}`);
+console.log(`server running on localhost:${port}`);
