@@ -1,4 +1,4 @@
-const { AuthorizationError } = require('./../errors');
+const { AuthorizationError } = require('./errors');
 const jwt = require('jsonwebtoken');
 
 const directiveResolvers = {

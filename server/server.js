@@ -20,20 +20,20 @@ const typeDefs = `
     id: ID!
     supplierId: ID!
     sku: String
-    qty: Number
-    price: Number
+    qty: Int
+    price: Int
     parrot: String
-    rating: Number @hasScope(scope: ["read:rating"])
+    rating: Int @hasScope(scope: ["read:rating"])
   }
 
   input ProductInput {
     id: ID!
     supplierId: ID!
     sku: String!
-    qty: Number!
-    price: Number!
+    qty: Int!
+    price: Int!
     parrot: String!
-    rating: Number!
+    rating: Int!
   }
 
   type Query {
