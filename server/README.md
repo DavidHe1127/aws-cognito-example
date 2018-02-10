@@ -3,7 +3,8 @@
 ## To see the demo
 * `npm i`
 * `npm run dev`
-* Open another shell terminal and run `node caller.js`
+* Copy desired token from `readme` and paste it into header in `client.js`
+* Open another shell terminal and run `node client.js`
 
 
 ## Client
@@ -25,7 +26,7 @@ eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJCaXJkcyBTdXBwbHkgU2VydmVyIiwiaWF
 ```
 
 ## Credits
-(Chenkie's auth demo repo)[https://github.com/chenkie/graphql-auth]
+[Chenkie's auth demo repo](https://github.com/chenkie/graphql-auth)
 
 ## License
 
