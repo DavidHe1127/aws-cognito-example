@@ -1,27 +1,15 @@
 let PRODUCTS = require('./products');
 
-const allProducts = (obj, args, ctx) => {
-  return PRODUCTS.filter(article => article.authorId === user.sub);
-};
+const allProductsBySupplier = (obj, args, ctx) => PRODUCTS.filter(p => p.supplierId === ctx.user.sub);
 
-const addProduct = (obj, args, ctx) => {
-  args.input.id = ARTICLES.length + 1;
-  ARTICLES.push(args.input);
-  return args.input;
-};
+// const addProduct = (obj, args, ctx) => {
+//   args.input.id = ARTICLES.length + 1;
+//   ARTICLES.push(args.input);
+//   return args.input;
+// };
 
-const product = (obj, args, ctx) => {
-  return {
-    id: '2',
-    authorId: '234',
-    authorName: 'Diego Poza',
-    articleName: 'Is FaceID Really Secure?',
-    link: 'https://auth0.com/blog/is-faceid-really-secure/',
-    review: {
-      rating: 11,
-      comment: 'Very good article, would read again.',
-    },
-  };
-};
+const product = (obj, args, ctx) => PRODUCTS.find(p => p.id === args.productId);
 
-module.exports = {allProducts, addProduct, product};
+const everyProductPub = (obj, args, ctx) => PRODUCTS;
+
+module.exports = {allProductsBySupplier, product, everyProductPub};
