@@ -27,6 +27,7 @@ eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJCaXJkcyBTdXBwbHkgU2VydmVyIiwiaWF
 
 ## Credits
 [Chenkie's auth demo repo](https://github.com/chenkie/graphql-auth)
+[JWT Builder](http://jwtbuilder.jamiekurtz.com/)
 
 ## License
 
