@@ -3,7 +3,8 @@
 ## To see the demo
 * `npm i`
 * `npm run dev`
-* Open another shell terminal and run `node caller.js`
+* Copy desired token from `readme` and paste it into header in `client.js`
+* Open another shell terminal and run `node client.js`
 
 
 ## Client
