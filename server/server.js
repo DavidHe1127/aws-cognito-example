@@ -6,7 +6,7 @@ const {
 } = require('graphql-tools');
 const {directiveResolvers} = require('./directives');
 
-const {allProducts, product, everyProductPub, addProduct} = require('./resolvers');
+const {allProductsBySupplier, product, everyProductPub, addProduct} = require('./resolvers');
 
 const app = express();
 
@@ -37,9 +37,9 @@ const typeDefs = `
   }
 
   type Query {
-    allProducts: [Product] @isAuthenticated
+    allProductsBySupplier: [Product] @isAuthenticated
     product: Product @isAuthenticated
-    everyProductPub: Product
+    everyProductPub: [Product]
   }
 
   type Mutation {
@@ -49,7 +49,7 @@ const typeDefs = `
 
 const resolvers = {
   Query: {
-    allProducts,
+    allProductsBySupplier,
     product,
     everyProductPub
   },
@@ -61,15 +61,15 @@ const resolvers = {
 const schema = makeExecutableSchema({
   typeDefs,
   resolvers,
-  directiveResolvers,
+  directiveResolvers
 });
 
 app.use(
   '/graphql',
   graphqlHTTP({
     schema,
-    graphiql: true,
-  }),
+    graphiql: true
+  })
 );
 
 app.listen(port);

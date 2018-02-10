@@ -1,9 +1,9 @@
 const fetch = require('node-fetch');
 
 const queries = {
-  public: '{ allArticlesPub { id, authorId, authorName, articleName, link } }',
-  allArticles: '{ allArticles { id, authorId, authorName, articleName, link } }',
-  article: '{ article { id, authorId, authorName, articleName, link, review {rating comment} } }'
+  everyProductPub: '{ everyProductPub { allProductsBySupplier { id, supplierId, sku, qty, price, parrot rating } }',
+  allProductsBySupplier: '{ allProductsBySupplier { id, supplierId, sku, qty, price, parrot rating } }',
+  product: '{ product { id, supplierId, sku, qty, price, parrot rating }'
 };
 
 fetch('http://localhost:8080/graphql', {
