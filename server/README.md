@@ -1,4 +1,4 @@
-# Auth your Graphql API using custom directive
+## Auth your Graphql API using custom directive
 
 ### To see the demo
 * `npm i`
