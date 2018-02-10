@@ -10,10 +10,10 @@ fetch('http://localhost:8080/graphql', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
-    // 'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJCaXJkcyBTdXBwbHkgU2VydmVyIiwiaWF0IjoxNTE4MjQ2MjU3LCJleHAiOm51bGwsImF1ZCI6IiIsInN1YiI6IjEiLCJzY29wZSI6InJlYWQ6cmF0aW5nIn0.7UY_59tvmaKDc6-_wL3C5_eFMGRHqBWCqTDE1Wk9kwo'
+    'Authorization': 'Bearer '
   },
   body: JSON.stringify({
-    query: queries.suppliers
+    query: queries.allProductsBySupplier
   })
 })
   .then(res => res.json())

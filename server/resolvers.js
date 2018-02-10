@@ -1,7 +1,7 @@
 let PRODUCTS = require('./products');
 let SUPPLIERS = require('./suppliers');
 
-const allProductsBySupplier = (obj, args, ctx) => PRODUCTS.filter(p => p.supplierId === ctx.user.sub);
+const allProductsBySupplier = (obj, args, ctx) => PRODUCTS.filter(p => p.supplierId === Number(ctx.user.sub));
 
 const addProduct = (obj, args, ctx) => {
   const id = PRODUCTS.length + 1;
