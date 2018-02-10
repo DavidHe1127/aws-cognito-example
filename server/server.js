@@ -32,7 +32,6 @@ const typeDefs = `
   }
 
   input ProductInput {
-    id: ID!
     supplierId: ID!
     sku: String!
     qty: Int!
@@ -48,7 +47,7 @@ const typeDefs = `
   }
 
   type Mutation {
-    addProduct(input: ProductInput): Product @hasScope(scope: ["add:product"])
+    addProduct(input: ProductInput!): Product @hasScope(scope: ["add:product"])
   }
 `;
 
