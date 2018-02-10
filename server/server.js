@@ -6,7 +6,7 @@ const {
 } = require('graphql-tools');
 const {directiveResolvers} = require('./directives');
 
-const {allProductsBySupplier, product, everyProductPub, addProduct} = require('./resolvers');
+const {allProductsBySupplier, addProduct, product, everyProductPub} = require('./resolvers');
 
 const app = express();
 
