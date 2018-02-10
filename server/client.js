@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 
 const queries = {
-  everyProductPub: '{ everyProductPub { allProductsBySupplier { id, supplierId, sku, qty, price, parrot rating } }',
+  everyProductPub: '{ everyProductPub { id, supplierId, sku, qty, price, parrot rating } }',
   allProductsBySupplier: '{ allProductsBySupplier { id, supplierId, sku, qty, price, parrot rating } }',
   product: '{ product { id, supplierId, sku, qty, price, parrot rating }'
 };
@@ -13,7 +13,7 @@ fetch('http://localhost:8080/graphql', {
     authorization: ''
   },
   body: JSON.stringify({
-    query: queries.article
+    query: queries.everyProductPub
   })
 })
   .then(res => res.json())

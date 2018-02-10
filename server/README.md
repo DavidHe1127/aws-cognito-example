@@ -6,25 +6,26 @@
 * Open another shell terminal and run `node caller.js`
 
 
-## Caller file
+## Client
 It uses `node-fetch` to make the call.
 
-To use a auth-needed api call, change the query to a auth-needed one like `allArticles`.
+To use a auth-needed api call, change the query to a auth-needed one like `allProductsBySupplier`.
+
+
+### Supplier 1 JWT With `read:rating` Scope
+
+```
+eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJCaXJkcyBTdXBwbHkgU2VydmVyIiwiaWF0IjoxNTE4MjQ2MjU3LCJleHAiOm51bGwsImF1ZCI6IiIsInN1YiI6IjEiLCJzY29wZSI6InJlYWQ6cmF0aW5nIn0.7UY_59tvmaKDc6-_wL3C5_eFMGRHqBWCqTDE1Wk9kwo
+```
+
+### Supplier 2 JWT
+
+```
+eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJCaXJkcyBTdXBwbHkgU2VydmVyIiwiaWF0IjoxNTE4MjQ2MjU3LCJleHAiOm51bGwsImF1ZCI6IiIsInN1YiI6IjIifQ.T0Sxh6ZYQk5IrQGcZNctOJJ_Co1hU_EJo21I879WUe4
+```
 
 ## Credits
 (Chenkie's auth demo repo)[https://github.com/chenkie/graphql-auth]
-
-### JWT without scope
-
-```
-eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJncmFwaHFsLXRlc3Qtc2VydmVyIiwiaWF0IjoxNTA5MDQxMTE3LCJleHAiOjE1NDA1NzcxMTcsImF1ZCI6ImdyYXBocWwtdGVzdC1hcGkiLCJzdWIiOiIxMjMifQ.tTRbNKT58UqRMqMkf8cLenRZ0qvf15mUl6N6dWyn_Wo
-```
-
-### JWT With `write:articles` Scope
-
-```
-eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJncmFwaHFsLXRlc3Qtc2VydmVyIiwiaWF0IjoxNTA5MDQxMTE3LCJleHAiOjE1NDA1NzcxMTcsImF1ZCI6ImdyYXBocWwtdGVzdC1hcGkiLCJzdWIiOiIxMjMiLCJzY29wZSI6IndyaXRlOmFydGljbGVzIn0.mupYodqVggdF1fZaiyVdfOGLwY_R3KISGBTCJ7hhH5U
-```
 
 ## License
 

@@ -15,7 +15,7 @@ const directiveResolvers = {
         process.env.JWT_SECRET
       );
       context.user = decoded;
-      return next({ a: 12 });
+      return next();
     } catch (err) {
       throw new AuthorizationError({
         message: 'You are not authorized.'
