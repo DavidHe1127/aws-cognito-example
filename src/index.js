@@ -48,7 +48,7 @@ ReactDOM.render(
       <Route path="/confirm/:username?" component={Confirm} />
       <Route path="/signin" component={Signin} />
       <Route
-        path="/home"
+        path="/main"
         render={props => {
           if (!localStorage.getItem('session')) {
             return <Redirect to="/signin" />;
