@@ -26,12 +26,12 @@ fetch('http://localhost:8080/graphql', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
-    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJCaXJkcyBTdXBwbHkgU2VydmVyIiwiaWF0IjoxNTE4MjQ2MjU3LCJleHAiOjE1NDk3ODM4MTUsImF1ZCI6Ind3dy5iaXJkcy1zdXBwbHkuY29tLmF1Iiwic3ViIjoiMSIsInNjb3BlIjoicmVhZDpyYXRpbmcifQ.AXgbsq4ZWI5H6TP6x1TkAOlZLFDP_cEG4hrBWROw9Es'
+    'Authorization': 'Bearer eyJ0eXAiOisdsdsdKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJCaXJkcyBTdXBwbHkgU2VydmVyIiwiaWF0IjoxNTE4MjQ2MjU3LCJleHAiOjE1NDk3ODM4MTUsImF1ZCI6Ind3dy5iaXJkcy1zdXBwbHkuY29tLmF1Iiwic3ViIjoiMSIsInNjb3BlIjoicmVhZDpyYXRpbmcifQ.AXgbsq4ZWI5H6TP6x1TkAOlZLFDP_cEG4hrBWROw9Es'
   },
-  body: JSON.stringify(mutations.addProduct),
-  // body: JSON.stringify({
-  //   query: queries.addProduct
-  // })
+  // body: JSON.stringify(mutations.addProduct),
+  body: JSON.stringify({
+    query: queries.allProductsBySupplier
+  })
 })
   .then(res => res.json())
   .then(json => console.log(json.errors, json.data))

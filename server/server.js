@@ -4,9 +4,11 @@ const graphqlHTTP = require('express-graphql');
 const {
   makeExecutableSchema
 } = require('graphql-tools');
-const {directiveResolvers} = require('./directives');
 
+const {directiveResolvers} = require('./directives');
 const {allProductsBySupplier, addProduct, product, suppliers} = require('./resolvers');
+
+require('./auth');
 
 const app = express();
 
@@ -77,4 +79,5 @@ app.use(
 );
 
 app.listen(port);
+
 console.log(`server running on localhost:${port}`);
