@@ -17,8 +17,6 @@ class Main extends React.Component {
   }
 
   render() {
-    console.log(this.props);
-
     const session = JSON.parse(localStorage.getItem('session'));
 
     return (
