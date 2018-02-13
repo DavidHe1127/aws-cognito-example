@@ -6,7 +6,8 @@ class SignIn extends React.Component {
     super(props);
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      error: ''
     };
   }
 
@@ -26,15 +27,18 @@ class SignIn extends React.Component {
       .then(data => {
         const { signInUserSession } = data;
         localStorage.setItem('session', JSON.stringify(signInUserSession));
-        this.props.history.push('/home');
+        this.props.history.push('/main');
       })
-      .catch(err => console.log(err));
+      .catch(err => this.setState({
+        error: err.message
+      }));
   }
 
   render() {
     return (
       <div className="container">
         <h1 className="title">SignIn</h1>
+        <p style={{color: "red"}}>{this.state.error}</p>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <input
             type="text"
