@@ -1,5 +1,6 @@
 const { AuthorizationError } = require('./errors');
 const auth = require('./auth');
+const jwt = require('jsonwebtoken');
 
 const directiveResolvers = {
   isAuthenticated: (next, source, args, context) => {
