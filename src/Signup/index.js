@@ -40,19 +40,6 @@ class SignUp extends React.Component {
       });
     }
 
-    // Auth.signUp({
-    //   username: 'tracyguan108@gmail.com',
-    //   password: '52230365DavidHe',
-    //   email: 'tracyguan108@gmail.com',
-    //   given_name: 'xin',
-    //   family_name: 'guan',
-    //   profile: 'good',
-    //   gender: 'f',
-    //   phone_number: '+61430296166',
-    // })
-    //   .then(data => console.log('signup',data))
-    //   .catch(err => console.log(err));
-
     this.props.history.push(`/confirm/${email}`);
   }
 
